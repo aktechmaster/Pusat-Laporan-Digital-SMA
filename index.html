@@ -13,19 +13,20 @@
             theme: {
                 extend: {
                     colors: {
-                        mint: '#2e7d32', /* Disesuaikan sedikit lebih gelap agar terbaca jelas di background terang */
+                        mint: '#2e7d32',
                         mintAccent: '#98fb98',
                         orangeCustom: '#f9a825',
                         creamBase: '#f6f3ea'
+                    },
+                    transitionTimingFunction: {
+                        'dropdown': 'cubic-bezier(0.4, 0, 0.2, 1)',
                     }
                 }
             }
         }
     </script>
 
-    
     <style>
-        /* CSS PREMIUM UNTUK BACKGROUND DENGAN OPACITY RENDAH */
         .bg-cream-abstract {
             background-color: #F0FFFF;
             position: relative;
@@ -47,29 +48,35 @@
             pointer-events: none; 
         }
 
-        /* 🛠️ KUNCI PERBAIKAN: ANIMASI GERAKAN KOTAK 3D SAAT DILEWATI KURSOR */
         .box-3d {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .box-3d:hover {
-            transform: translateY(-6px); /* Kotak mengangkat ke atas */
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* Bayangan menebal nyata */
-            border-color: #f9a825; /* Garis tepi berubah mengikuti warna orangeCustom */
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            border-color: #f9a825;
+        }
+
+        /* Animasi dropdown */
+        .animate-fadeIn {
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
-
-    
 </head>
 <body class="bg-cream-abstract text-slate-800 font-sans antialiased">
 
-    <!-- MENU NAVIGASI (Dibuat Semi-Transparan Blur) -->
+    <!-- MENU NAVIGASI -->
     <nav class="sticky top-0 z-50 bg-[#91f2b8]/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 
                 <div class="flex items-center gap-3">
-                    <img src="logosmpcolor.png" alt="Logo SMP IT Al-Kautsar" class="h-11 w-auto object-contain flex-shrink-0">
+                    <img src="logosmpcolor.png" alt="Logo SMA IT Al-Kautsar" class="h-11 w-auto object-contain flex-shrink-0">
                     <span class="font-black text-base md:text-lg tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-orangeCustom to-emerald-700">
                         SMA IT AL-KAUTSAR
                     </span>
@@ -104,8 +111,7 @@
         </div>
     </nav>
 
-    
-    <!-- SECTION 1: HOME (HERO BANNER) -->
+    <!-- SECTION 1: HOME -->
     <header id="beranda" class="relative overflow-hidden pt-12 pb-16 px-4 text-center max-w-4xl mx-auto">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-72 h-72 bg-orangeCustom/10 rounded-full blur-3xl -z-10"></div>
         
@@ -124,7 +130,7 @@
         </p>
     </header>
 
-    <!-- SECTION 2: LAPORAN (8 ELEMEN KOTAK UTAMA) -->
+    <!-- SECTION 2: LAPORAN -->
     <main id="laporan" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-20">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-300/60 pb-5 mb-10">
             <div>
@@ -138,110 +144,101 @@
             </span>
         </div>
 
-        <!-- GRID KOTAK 3D (Sekarang menggunakan warna dasar putih agar menonjol di atas cream) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- 1. Kehadiran Siswa -->
-<a href="https://docs.google.com/spreadsheets/d/1kfa92iO_K4cCU_niUVL5EJbnNvPzzhgRY1Hbt706Gx8/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🙋‍♂️</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Kehadiran Siswa</h3>
-        <p class="text-sm text-slate-500 mt-1">Rekapitulasi persentase presensi harian siswa sekolah.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="https://docs.google.com/spreadsheets/d/1kfa92iO_K4cCU_niUVL5EJbnNvPzzhgRY1Hbt706Gx8/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🙋‍♂️</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Kehadiran Siswa</h3>
+                    <p class="text-sm text-slate-500 mt-1">Rekapitulasi persentase presensi harian siswa sekolah.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 2. Jurnal Mengajar -->
-<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">📖</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Jurnal Mengajar</h3>
-        <p class="text-sm text-slate-500 mt-1">Catatan agenda materi pembelajaran harian oleh dewan guru.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="javascript:void(0)" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">📖</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Jurnal Mengajar</h3>
+                    <p class="text-sm text-slate-500 mt-1">Catatan agenda materi pembelajaran harian oleh dewan guru.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 3. T2Q -->
-<a href="https://docs.google.com/spreadsheets/d/1SeZQuime0oywoP0Clw3EdmGD0S0bGB6tRJDx6HbiO_Y/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🕌</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">T2Q Umum</h3>
-        <p class="text-sm text-slate-500 mt-1">Rekap perkembangan program tilawah dan tahfidz reguler.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="https://docs.google.com/spreadsheets/d/1SeZQuime0oywoP0Clw3EdmGD0S0bGB6tRJDx6HbiO_Y/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🕌</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">T2Q Umum</h3>
+                    <p class="text-sm text-slate-500 mt-1">Rekap perkembangan program tilawah dan tahfidz reguler.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 4. Absensi Karyawan -->
-<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">💼</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Absensi Karyawan</h3>
-        <p class="text-sm text-slate-500 mt-1">Data kehadiran guru serta staf administrasi sekolah.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="javascript:void(0)" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">💼</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Absensi Karyawan</h3>
+                    <p class="text-sm text-slate-500 mt-1">Data kehadiran guru serta staf administrasi sekolah.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 5. Rekap BPI -->
-<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">📈</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Rekap BPI</h3>
-        <p class="text-sm text-slate-500 mt-1">Laporan pelaksanaan Bina Pribadi Islam berkala.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="javascript:void(0)" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">📈</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Rekap BPI</h3>
+                    <p class="text-sm text-slate-500 mt-1">Laporan pelaksanaan Bina Pribadi Islam berkala.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 6. Absensi Rapat -->
-<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🤝</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Absensi Rapat</h3>
-        <p class="text-sm text-slate-500 mt-1">Daftar hadir pertemuan resmi kedinasan dan internal.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="javascript:void(0)" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🤝</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Absensi Rapat</h3>
+                    <p class="text-sm text-slate-500 mt-1">Daftar hadir pertemuan resmi kedinasan dan internal.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 7. Mutabaah -->
-<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">⏱️</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Mutabaah</h3>
-        <p class="text-sm text-slate-500 mt-1">Evaluasi amal yaumi dan kedisiplinan ibadah siswa harian.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="javascript:void(0)" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">⏱️</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Mutabaah</h3>
+                    <p class="text-sm text-slate-500 mt-1">Evaluasi amal yaumi dan kedisiplinan ibadah siswa harian.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
-<!-- 8. Rekap Piket Guru -->
-<a href="javascript:void(0)" target="_blank" rel="noopener noreferrer" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🧹</div>
-        <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Rekap Piket</h3>
-        <p class="text-sm text-slate-500 mt-1">Laporan jumlah guru piket.</p>
-    </div>
-    <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
-        Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
-    </div>
-</a>
+            <a href="javascript:void(0)" class="box-3d bg-white p-6 rounded-2xl flex flex-col justify-between group shadow-md border border-slate-100">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-mintAccent/30 group-hover:text-emerald-700 transition-colors duration-300">🧹</div>
+                    <h3 class="font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors">Rekap Piket</h3>
+                    <p class="text-sm text-slate-500 mt-1">Laporan jumlah guru piket.</p>
+                </div>
+                <div class="mt-6 flex items-center text-xs font-bold text-orangeCustom group-hover:text-emerald-700 gap-1">
+                    Buka Tautan <span class="group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+            </a>
 
         </div>
     </main>
 
-    <!-- ✅ SECTION BARU: INPUT NILAI -->
-    <section id="input-nilai" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-300/40 scroll-mt-20">
+    <!-- ✅ SECTION INPUT NILAI (Sekarang pasti muncul!) -->
+    <section id="input-nilai" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-300/40 scroll-mt-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-300/60 pb-5 mb-10">
             <div>
                 <h2 class="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
@@ -251,7 +248,6 @@
             </div>
         </div>
 
-        <!-- GRID MATA PELAJARAN -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
 
             <a href="javascript:void(0)" class="box-3d bg-white p-4 rounded-xl flex flex-col items-center text-center shadow-sm border border-slate-100 hover:border-orangeCustom">
@@ -327,10 +323,8 @@
         </div>
     </section>
 
-   
-
-        <!-- SECTION 3: RAPOR (SISTEM DROPDOWN INTERAKTIF) -->
-    <section id="rapor" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-300/40 scroll-mt-20">
+    <!-- SECTION RAPOR -->
+    <section id="rapor" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-300/40 scroll-mt-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-300/60 pb-5 mb-10">
             <div>
                 <h2 class="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
@@ -341,89 +335,80 @@
             </div>
         </div>
 
-        <!-- GRID UTAMA 7 KATEGORI RAPOR -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- 1. Rapor STS 1 -->
-<div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📑</div>
-        <h3 class="font-bold text-lg text-slate-900">Rapor STS 1</h3>
-        <p class="text-sm text-slate-500 mt-1">Sains, Teknologi, dan Sosial - Semester Ganjil.</p>
-    </div>
-    <!-- Dropdown Trigger -->
-    <button onclick="toggleRaporDropdown('sts1')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
-        <span>Pilih Kelas (X - XII)</span>
-        <span id="icon-sts1" class="transition-transform duration-300">▼</span>
-    </button>
-    <!-- Isi Dropdown Kelas -->
-    <div id="drop-sts1" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
-    </div>
-</div>
+            <div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📑</div>
+                    <h3 class="font-bold text-lg text-slate-900">Rapor STS 1</h3>
+                    <p class="text-sm text-slate-500 mt-1">Sains, Teknologi, dan Sosial - Semester Ganjil.</p>
+                </div>
+                <button onclick="toggleRaporDropdown('sts1')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
+                    <span>Pilih Kelas (X - XII)</span>
+                    <span id="icon-sts1" class="transition-transform duration-300 inline-block">▼</span>
+                </button>
+                <div id="drop-sts1" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
+                </div>
+            </div>
 
-<!-- 2. Rapor STS 2 -->
-<div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📑</div>
-        <h3 class="font-bold text-lg text-slate-900">Rapor STS 2</h3>
-        <p class="text-sm text-slate-500 mt-1">Sains, Teknologi, dan Sosial - Semester Genap.</p>
-    </div>
-    <button onclick="toggleRaporDropdown('sts2')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
-        <span>Pilih Kelas (X - XII)</span>
-        <span id="icon-sts2" class="transition-transform duration-300">▼</span>
-    </button>
-    <div id="drop-sts2" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
-    </div>
-</div>
+            <div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📑</div>
+                    <h3 class="font-bold text-lg text-slate-900">Rapor STS 2</h3>
+                    <p class="text-sm text-slate-500 mt-1">Sains, Teknologi, dan Sosial - Semester Genap.</p>
+                </div>
+                <button onclick="toggleRaporDropdown('sts2')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
+                    <span>Pilih Kelas (X - XII)</span>
+                    <span id="icon-sts2" class="transition-transform duration-300 inline-block">▼</span>
+                </button>
+                <div id="drop-sts2" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
+                </div>
+            </div>
 
-<!-- 3. Rapor SAS 1 -->
-<div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📊</div>
-        <h3 class="font-bold text-lg text-slate-900">Rapor SAS 1</h3>
-        <p class="text-sm text-slate-500 mt-1">Sumatif Akhir Semester - Semester Ganjil.</p>
-    </div>
-    <button onclick="toggleRaporDropdown('sas1')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
-        <span>Pilih Kelas (X - XII)</span>
-        <span id="icon-sas1" class="transition-transform duration-300">▼</span>
-    </button>
-    <div id="drop-sas1" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
-    </div>
-</div>
+            <div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📊</div>
+                    <h3 class="font-bold text-lg text-slate-900">Rapor SAS 1</h3>
+                    <p class="text-sm text-slate-500 mt-1">Sumatif Akhir Semester - Semester Ganjil.</p>
+                </div>
+                <button onclick="toggleRaporDropdown('sas1')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
+                    <span>Pilih Kelas (X - XII)</span>
+                    <span id="icon-sas1" class="transition-transform duration-300 inline-block">▼</span>
+                </button>
+                <div id="drop-sas1" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
+                </div>
+            </div>
 
-<!-- 4. Rapor SAS 2 -->
-<div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
-    <div>
-        <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📊</div>
-        <h3 class="font-bold text-lg text-slate-900">Rapor SAS 2</h3>
-        <p class="text-sm text-slate-500 mt-1">Sumatif Akhir Semester - Semester Genap.</p>
-    </div>
-    <button onclick="toggleRaporDropdown('sas2')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
-        <span>Pilih Kelas (X - XII)</span>
-        <span id="icon-sas2" class="transition-transform duration-300">▼</span>
-    </button>
-    <div id="drop-sas2" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
-        <a href="https://docs.google.com/spreadsheets/d/1yklfUYcSye7aR8FX58wsJKUFSFUhR8SMHlzm53iVkAo/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
-        <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
-    </div>
-</div>
-
-            
+            <div class="box-3d bg-white p-6 rounded-2xl shadow-md border border-slate-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 rounded-xl bg-orangeCustom/10 text-orangeCustom flex items-center justify-center text-2xl font-bold mb-4">📊</div>
+                    <h3 class="font-bold text-lg text-slate-900">Rapor SAS 2</h3>
+                    <p class="text-sm text-slate-500 mt-1">Sumatif Akhir Semester - Semester Genap.</p>
+                </div>
+                <button onclick="toggleRaporDropdown('sas2')" class="mt-6 w-full py-2.5 px-4 bg-slate-50 hover:bg-orangeCustom/10 text-orangeCustom font-bold text-xs rounded-xl flex items-center justify-between border border-slate-100 transition-colors">
+                    <span>Pilih Kelas (X - XII)</span>
+                    <span id="icon-sas2" class="transition-transform duration-300 inline-block">▼</span>
+                </button>
+                <div id="drop-sas2" class="hidden grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-slate-100 animate-fadeIn">
+                    <a href="https://docs.google.com/spreadsheets/d/1yklfUYcSye7aR8FX58wsJKUFSFUhR8SMHlzm53iVkAo/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">X Al-Mubdi</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XI Al Jabar</a>
+                    <a href="javascript:void(0)" class="py-1.5 text-center text-xs font-bold bg-slate-100 hover:bg-mintAccent/30 text-slate-700 rounded-lg transition-colors">XII Al Fath</a>
+                </div>
+            </div>
 
         </div>
     </section>
 
-    <!-- KODE JAVASCRIPT LOGIKA DROPDOWN (Taruh di bagian bawah sebelum tag </body>) -->
+    <!-- JAVASCRIPT DROPDOWN -->
     <script>
         function toggleRaporDropdown(id) {
             const dropdown = document.getElementById('drop-' + id);
@@ -439,11 +424,11 @@
         }
     </script>
 
-    <section id="arsip" class="max-w-7xl mx-auto px-4 py-20 border-t border-slate-300/40 text-center scroll-mt-20">
+    <section id="arsip" class="max-w-7xl mx-auto px-4 py-20 border-t border-slate-300/40 text-center scroll-mt-6">
         <h2 class="text-xl font-bold text-slate-400">Section Arsip (Coming Soon)</h2>
     </section>
 
-    <section id="lainnya" class="max-w-7xl mx-auto px-4 py-20 border-t border-slate-300/40 text-center scroll-mt-20">
+    <section id="lainnya" class="max-w-7xl mx-auto px-4 py-20 border-t border-slate-300/40 text-center scroll-mt-6">
         <h2 class="text-xl font-bold text-slate-400">Section Lainnya (Coming Soon)</h2>
     </section>
 
@@ -468,5 +453,6 @@
             });
         });
     </script>
+
 </body>
 </html>
